@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+         <style>
+        body {
+            background-color: #ffe4b4; /* cor personalizada */
+        }
+    </style>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -29,6 +34,7 @@
         </script>
     </head>
     <body>
+        
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-red bg-red">
             <div class="container">
@@ -40,7 +46,9 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Página Inicial</a></li>
                         <li class="nav-item"><a class="nav-link" href="formONG.php">Cadastrar ONG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="formLogin.php">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="formLogin.php">Login</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="sobreNos.php">Sobre Nós</a></li>
+                        <li class="nav-item"><a class="nav-link" href="ajudeagora.php">Ajude Agora</a></li>
                     </ul>
                 </div>
             </div>

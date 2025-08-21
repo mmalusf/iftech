@@ -28,7 +28,7 @@
   --bs-gray-100: #f8f9fa;
   --bs-gray-200: #e9ecef;
   --bs-gray-300: #dee2e6;
-  --bs-gray-400: #ced4da;
+  --bs-gray-400: #ffe4b4;
   --bs-gray-500: #adb5bd;
   --bs-gray-600: #6c757d;
   --bs-gray-700: #495057;
@@ -462,7 +462,7 @@ legend + * {
   padding: 0;
 }
 
-::file-selector-button {
+input[type="file"]::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
 }
