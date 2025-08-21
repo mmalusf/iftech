@@ -3,8 +3,8 @@
     session_start(); //função para inciar uma sessão
     include("conexaoBD.php");
 
-    $emailUsuario = mysqli_real_escape_string($link, $_POST["emailUsuario"]);
-    $senhaUsuario = mysqli_real_escape_string($link, $_POST["senhaUsuario"]);
+    $emailUsuario = mysqli_real_escape_string($conn, $_POST["emailUsuario"]);
+    $senhaUsuario = mysqli_real_escape_string($conn, $_POST["senhaUsuario"]);
 
 
     $buscarLogin ="SELECT *
@@ -14,16 +14,16 @@
                     ";
 
     
-    $efetuarLogin = mysqli_query($link, $buscarLogin);
+    $efetuarLogin = mysqli_query($conn, $buscarLogin);
     
     if($registro = mysqli_fetch_assoc($efetuarLogin)){
         $quantidadeLogin = mysqli_num_rows($efetuarLogin);
   
-        $emaiUsuario = $registro["email"];
+        $emailUsuario = $registro["email"];
         $nomeUsuario = $registro["nome"];
 
 
-        $_SESSION["emaiUsuario"] = $emaiUsuario;
+        $_SESSION["emailUsuario"] = $emailUsuario;
         $_SESSION["nomeUsuario"] = $nomeUsuario;
 
         header("location:index.php"); //Funçao que rediereciona para uma determinada pagina

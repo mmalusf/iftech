@@ -8,7 +8,7 @@
             //Verifica o método de requisição do servidor
             if($_SERVER["REQUEST_METHOD"] == "POST"){
                 //Bloco para declaração de variáveis
-                $nomeOng = $emailOng = $senhaOng = $enderecoOng = $telefoneOng = $causaOng = $confirmarSenhaOng = "";
+                $nomeOng = $emailOng = $senhaOng = $enderecoOng = $telefoneOng = $causaOng =$fotoOng = $confirmarSenhaOng = "";
 
                 //Variável booleana para controle de erros de preenchimento
                 $erroPreenchimento = false;
@@ -32,6 +32,7 @@
                     }
 
                 }
+            
 
                 //Validação do campo cidadeUsuario
                 //Utiliza a função empty() para verificar se o campo está vazio
@@ -102,12 +103,45 @@
                         echo "<div class='alert alert-warning text-center'>As <strong>SENHAS</strong> informadas são diferentes!</div>";
                         $erroPreenchimento = true;
                     }
+
+                    //Início da validação da foto do usuário
+                $diretorio    = "img/"; //Define para qual diretório as imagens serão movidas
+                $fotoOng  = $diretorio . basename($_FILES['fotoOng']['name']); //img/joaozinho.jpg
+                $tipoDaImagem = strtolower(pathinfo($fotoOng, PATHINFO_EXTENSION)); //Pega o tipo do arquivo em letras minúsculas
+                $erroUpload   = false; //Variável para controle do upload da foto
+
+                //Verifica se o tamanho do arquivo é DIFERENTE DE ZERO
+                if($_FILES['fotoOng']['size'] != 0){
+
+                    //Verifica se o tamanho do arquivo é maior do que 5 MegaBytes (MB) - Medida em Bytes
+                    if($_FILES['fotoOng']['size'] > 5000000){
+                        echo "<div class='alert alert-warning text-center'>A <strong>FOTO</strong> deve ter tamanho máximo de 5MB!</div>";
+                        $erroUpload = true;
+                    }
+
+                    //Verifica se a foto está nos formatos JPG, JPEG, PNG ou WEBP
+                    if($tipoDaImagem != "jpg" && $tipoDaImagem != "jpeg" && $tipoDaImagem != "png" && $tipoDaImagem != "webp"){
+                        echo "<div class='alert alert-warning text-center'>A <strong>FOTO</strong> deve estar nos formatos JPG, JPEG, PNG ou WEBP</div>";
+                        $erroUpload = true;
+                    }
+
+                    //Verifica se a imagem foi movida para o diretório IMG, utilizando a função move_uploaded_file
+                    if(!move_uploaded_file($_FILES['fotoOng']['tmp_name'], $fotoOng)){
+                        echo "<div class='alert alert-danger text-center'>Erro ao tentar mover a <strong>FOTO</strong> para o diretório $diretorio!</div>";
+                        $erroUpload = true;
+                    }
+
+                }
+                else{
+                    echo "<div class='alert alert-warning text-center'>O campo <strong>FOTO</strong> é obrigatório!</div>";
+                    $erroUpload = true;
+                }
                 }
                 //Se não houver erro de preenchimento, exibe alerta de sucesso e uma tabela com os dados informados
                 if(!$erroPreenchimento){
 
                     //Cria uma variável para armazenar a QUERY para realizar a inserção dos dados do Usuário na tabela Usuarios
-                    $inserirOng = "INSERT INTO ong (nome, email, senha, endereco, telefone, causa) VALUES ('$nomeOng', '$emailOng','$senhaOng','$enderecoOng', '$telefoneOng', '$causaOng')";
+                    $inserirOng = "INSERT INTO ong (nome, email, senha, endereco, telefone, causa, foto) VALUES ('$nomeOng', '$emailOng','$senhaOng','$enderecoOng', '$telefoneOng', '$causaOng', '$fotoOng')";
 
                     //Inclui o arquivo de conexão com o Banco de Dados
                     include("conexaoBD.php");
@@ -139,6 +173,9 @@
                                         <th>CAUSA</th>
                                         <td>$causaOng</td>
                                     </tr>
+                                     <div class='container mt-3 text-center'>
+                                    <img src='$fotoOng' style='width:150px;' title='Foto de $nomeOng'>
+                                </div>
                                     
                                 </table>
                             </div>

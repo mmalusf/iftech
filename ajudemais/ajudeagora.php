@@ -1,4 +1,4 @@
-<?php include "header.php" ?>
+<?php include "header.php"; ?>
 <!DOCTYPE html>
 <html lang="pt-br"> 
 <head>
@@ -14,43 +14,42 @@
     <form action="processar.php" method="post">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
-            $ongs = [
-                [
-                    "nome" => "Amigos dos Animais",
-                    "descricao" => "Resgata e cuida de animais abandonados.",
-                    "imagem" => "img/pata.png" 
-                ],
-                [
-                    "nome" => "Criança Feliz",
-                    "descricao" => "Oferece apoio e educação para crianças carentes.",
-                    "imagem" => "img/criança.webp"
-                ],
-                [
-                    "nome" => "Verde Vivo",
-                    "descricao" => "ONG dedicada à preservação ambiental.",
-                    "imagem" => "img/arvore.jpg"
-                ]];
+            // Conexão com o banco de dados
+            //Inclui o arquivo de conexão com o Banco de Dados
+            include("conexaoBD.php");
 
-            foreach ($ongs as $index => $ong) {
-                echo '
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="' . $ong["imagem"] . '" class="card-img-top" alt="' . $ong["nome"] . '">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $ong["nome"] . '</h5>
-                            <p class="card-text">' . $ong["descricao"] . '</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="ajuda['.$index.']" value="servico" id="servico'.$index.'">
-                                <label class="form-check-label" for="servico'.$index.'">Ajudar com serviços</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="ajuda['.$index.']" value="dinheiro" id="dinheiro'.$index.'">
-                                <label class="form-check-label" for="dinheiro'.$index.'">Ajudar com dinheiro</label>
+            // Consulta as ONGs
+            $sql = "SELECT ID, NOME, CAUSA, FOTO FROM ong";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $index = 0;
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="' . htmlspecialchars($row["FOTO"]) . '" class="card-img-top" alt="' . htmlspecialchars($row["NOME"]) . '">
+                            <div class="card-body">
+                                <h5 class="card-title">' . htmlspecialchars($row["NOME"]) . '</h5>
+                                <p class="card-text">' . htmlspecialchars($row["CAUSA"]) . '</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ajuda['.$row["ID"].']" value="servico" id="servico'.$index.'">
+                                    <label class="form-check-label" for="servico'.$index.'">Ajudar com serviços</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ajuda['.$row["ID"].']" value="dinheiro" id="dinheiro'.$index.'">
+                                    <label class="form-check-label" for="dinheiro'.$index.'">Ajudar com dinheiro</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
+                    $index++;
+                }
+            } else {
+                echo '<p class="text-center">Nenhuma ONG cadastrada no momento.</p>';
             }
+
+            $conn->close();
             ?>
         </div>
 
@@ -62,4 +61,4 @@
 
 </body>
 </html>
-<?php include "footer.php" ?>
+<?php include "footer.php"; ?>

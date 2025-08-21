@@ -55,6 +55,13 @@
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback"></div>
                     </div>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="file" class="form-control" id="fotoOng" name="fotoOng" required>
+                        <label for="fotoOng">Foto</label>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
             
                     <div class="form-floating mt-3 mb-3">
                         <input type="password" class="form-control" id="confirmarSenhaOng" placeholder="Confirme a Senha" name="confirmarSenhaOng" required>
