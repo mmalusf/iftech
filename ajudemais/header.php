@@ -26,14 +26,20 @@
         <!-- Script JQuery para a máscara do telefone -->
         <script>
             $(document).ready(function(){
-                $("#telefoneUsuario").mask("(00) 00000-0000");
+                $("#telefoneDoador").mask("(00) 00000-0000");
                 $("#telefoneOng").mask("(00) 00000-0000");
-                //$("#cepUsuario").mask("00000-000");
-                $("#cpfUsuario").mask("000.000.000-00");
+                //$("#cepDoador").mask("00000-000");
+                $("#cpfDoador").mask("000.000.000-00");
             });
         </script>
     </head>
     <body>
+
+        <?php
+            error_reporting(0);
+            session_start();
+            $nomeDoador = $_SESSION['nomeDoador'];
+        ?>
         
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-red bg-red">
@@ -45,10 +51,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Página Inicial</a></li>
-                        <li class="nav-item"><a class="nav-link" href="formONG.php">Cadastrar ONG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="formLogin.php">Login</a></li> 
+                        <li class="nav-item"><a class="nav-link" href="formONG.php">Cadastrar Necessidade</a></li>
+                        <?php
+                            if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
+                                echo "
+                                    <li class='nav-item'><a class='nav-link active' aria-current='page' href='logout.php'>Sair</a></li>
+                                ";
+                            }
+                            else{
+                                echo "
+                                    <li class='nav-item'><a class='nav-link active' aria-current='page' href='formLogin.php'>Login</a></li>
+                                ";
+                            }
+                        ?>
+                    
                         <li class="nav-item"><a class="nav-link" href="sobreNos.php">Sobre Nós</a></li>
-                        <li class="nav-item"><a class="nav-link" href="ajudeagora.php">Ajude Agora</a></li>
                     </ul>
                 </div>
             </div>

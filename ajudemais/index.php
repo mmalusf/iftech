@@ -1,30 +1,61 @@
 <?php include "header.php" ?>
 <?php include "exibirLogo.php" ?>
     <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Bem Vindo(a) ao Ajude+!</h2>
-                        <p class="lead">Essa é uma plataforma para ações voluntárias, onde você, ONG ou usuário pode se cadastrar e contribuir com as causas.</p>
-                        <p class="mb-0">Contamos com você para criarmos um mundo mais solidário!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
         <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-            <div style="height: 20rem"></div>
-        </div>
+        
         <!-- Content section-->
         <section class="py-5">
             <div class="container my-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h2>Engaging Background Images</h2>
-                        <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
-                        <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
+                         <body class="bg-light">
+
+<div class="container my-0">
+    <h1 class="mb-4 text-center">Escolha sua contribuição:</h1>
+
+    <form action="processar.php" method="post">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php
+            // Conexão com o banco de dados
+            //Inclui o arquivo de conexão com o Banco de Dados
+            include("conexaoBD.php");
+
+            // Consulta as ONGs
+            $sql = "SELECT ID, NOME, CAUSA, FOTO FROM ong";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $index = 0;
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="' . htmlspecialchars($row["FOTO"]) . '" class="card-img-top" alt="' . htmlspecialchars($row["NOME"]) . '">
+                            <div class="card-body">
+                                <h5 class="card-title">' . htmlspecialchars($row["NOME"]) . '</h5>
+                                <p class="card-text">' . htmlspecialchars($row["CAUSA"]) . '</p>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Quero Ajudar</button>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>';
+                    $index++;
+                }
+            } else {
+                echo '<p class="text-center">Nenhuma ONG cadastrada no momento.</p>';
+            }
+
+            $conn->close();
+            ?>
+        </div>
+
+        
+    </form>
+</div>
+
+</body>
                     </div>
                 </div>
             </div>

@@ -16,20 +16,6 @@
                     </div>
 
                     <div class="form-floating mb-3 mt-3">
-                        <input type="email" class="form-control" id="emailOng" placeholder="email" name="emailOng" required>
-                        <label for="emailOng">Email</label>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    
-                    <div class="form-floating mt-3 mb-3">
-                        <input type="password" class="form-control" id="senhaOng" placeholder="Senha" name="senhaOng" required>
-                        <label for="senhaOng">Senha</label>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="form-floating mb-3 mt-3">
                         <select class="form-select" id="enderecoOng" name="enderecoOng" required>
                             <option value="curiuva">Curiúva</option>
                             <option value="imbau">Imbaú</option>
@@ -57,15 +43,36 @@
                     </div>
 
                     <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="necessidadeOng" placeholder="Text" name="necessidadeOng" required>
+                        <label for="NecessidadeOng">Necessidade</label>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-floating mb-3 mt-3">
                         <input type="file" class="form-control" id="fotoOng" name="fotoOng" required>
                         <label for="fotoOng">Foto</label>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="email" class="form-control" id="emailOng" placeholder="email" name="emailOng" required>
+                        <label for="emailOng">Email</label>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    
+                    <div class="form-floating mt-3 mb-3">
+                        <input type="password" class="form-control" id="senhaOng" placeholder="Senha" name="senhaOng" required>
+                        <label for="senhaOng">Senha</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback"></div>
                     </div>
             
                     <div class="form-floating mt-3 mb-3">
                         <input type="password" class="form-control" id="confirmarSenhaOng" placeholder="Confirme a Senha" name="confirmarSenhaOng" required>
-                        <label for="confirmarSenhaUsuario">Confirme a Senha</label>
+                        <label for="confirmarSenhaDoador">Confirme a Senha</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback"></div>
                     </div>

@@ -8,14 +8,14 @@
             <div class="col-12">
                 <form action="actionLogin.php" method="POST" class="was-validated">
                     <div class="form-floating mb-3 mt-3">
-                        <input type="email" class="form-control" id="emailUsuario" placeholder="Email" name="emailUsuario" required>
-                        <label for="emailUsuario">Email</label>
+                        <input type="email" class="form-control" id="emailDoador" placeholder="Email" name="emailDoador" required>
+                        <label for="emailDoador">Email</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="form-floating mt-3 mb-3">
-                        <input type="password" class="form-control" id="senhaUsuario" placeholder="Senha" name="senhaUsuario" required>
-                        <label for="senhaUsuario">Senha</label>
+                        <input type="password" class="form-control" id="senhaDoador" placeholder="Senha" name="senhaDoador" required>
+                        <label for="senhaDoador">Senha</label>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -28,7 +28,7 @@
     <br>
 
     <p>
-        Ainda não possui cadastro? <a href="formUsuario.php" title="Cadastrar-se">Clique aqui!</a>&nbsp<i class="bi bi-emoji-smile"></i>
+        Ainda não possui cadastro? <a href="tipoUsuario.php" title="Cadastrar-se">Clique aqui!</a>&nbsp<i class="bi bi-emoji-smile"></i>
     </p>
 
 </div>
